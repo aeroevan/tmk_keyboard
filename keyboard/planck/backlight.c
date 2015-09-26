@@ -4,7 +4,7 @@
 
 #define CHANNEL OCR1C
 
-void backlight_init_ports()
+void backlight_init_ports(void)
 {
 
     // Setup PB7 as output and output low.
