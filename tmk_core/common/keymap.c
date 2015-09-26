@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 
 
-static action_t keycode_to_action(uint8_t keycode);
+static action_t keycode_to_action(keycode_t keycode);
 
 
 /* converts key to action */
@@ -36,7 +36,7 @@ action_t action_for_key(uint8_t layer, keypos_t key)
 
 action_t action_for_key_default(uint8_t layer, keypos_t key)
 {
-    uint8_t keycode = keymap_key_to_keycode(layer, key);
+    keycode_t keycode = keymap_key_to_keycode(layer, key);
     switch (keycode) {
         case KC_FN0 ... KC_FN31:
             return keymap_fn_to_action(keycode);
@@ -127,7 +127,7 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 
 /* translates keycode to action */
-static action_t keycode_to_action(uint8_t keycode)
+static action_t keycode_to_action(keycode_t keycode)
 {
     action_t action;
     switch (keycode) {

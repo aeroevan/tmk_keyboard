@@ -22,11 +22,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdbool.h>
 #include "action.h"
 
+#ifdef KEYCODE_16
+typedef uint16_t keycode_t;
+#else
+typedef uint8_t keycode_t;
+#endif
 
 #ifdef BOOTMAGIC_ENABLE
 /* NOTE: Not portable. Bit field order depends on implementation */
 typedef union {
-    uint8_t raw;
+    keycode_t raw;
     struct {
         bool swap_control_capslock:1;
         bool capslock_to_control:1;
@@ -43,10 +48,10 @@ keymap_config_t keymap_config;
 
 
 /* translates key to keycode */
-uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key);
+keycode_t keymap_key_to_keycode(uint8_t layer, keypos_t key);
 
 /* translates Fn keycode to action */
-action_t keymap_fn_to_action(uint8_t keycode);
+action_t keymap_fn_to_action(keycode_t keycode);
 
 
 

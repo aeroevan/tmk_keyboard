@@ -53,6 +53,10 @@ ifdef USB_6KRO_ENABLE
     OPT_DEFS += -DUSB_6KRO_ENABLE
 endif
 
+ifdef KEYCODE_16
+    OPT_DEFS += -DKEYCODE_16
+endif
+
 ifdef SLEEP_LED_ENABLE
     SRC += $(COMMON_DIR)/sleep_led.c
     OPT_DEFS += -DSLEEP_LED_ENABLE
