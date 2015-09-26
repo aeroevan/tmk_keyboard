@@ -15,8 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KEYMAP_H
-#define KEYMAP_H
+#ifndef KEYMAP_COMMON_H
+#define KEYMAP_COMMON_H
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -30,24 +30,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #include "print.h"
 #include "debug.h"
 
-#ifdef BOOTMAGIC_ENABLE
-/* NOTE: Not portable. Bit field order depends on implementation */
-typedef union {
-    uint16_t raw;
-    struct {
-        bool swap_control_capslock:1;
-        bool capslock_to_control:1;
-        bool swap_lalt_lgui:1;
-        bool swap_ralt_rgui:1;
-        bool no_gui:1;
-        bool swap_grave_esc:1;
-        bool swap_backslash_backspace:1;
-        bool nkro:1;
-    };
-} keymap_config_t;
-keymap_config_t keymap_config;
-#endif
+/* translates Fn keycode to action */
+action_t keymap_fn_to_action(keycode_t keycode);
 
+/* translates Fn keycode to action */
+action_t keymap_func_to_action(keycode_t keycode);
 
 extern const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS];
 extern const uint16_t fn_actions[];
