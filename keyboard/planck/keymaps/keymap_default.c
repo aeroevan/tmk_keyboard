@@ -58,7 +58,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         case 0:   
         if (record->event.pressed) {
           register_code(KC_RSFT);
+#ifdef BACKLIGHT_ENABLED
           backlight_step();
+#endif
         } else {
           unregister_code(KC_RSFT);
         }
